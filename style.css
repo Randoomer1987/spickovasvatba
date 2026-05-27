@@ -1,164 +1,53 @@
-/* Základní styly */
-body {
-    font-family: 'Charm', cursive; /* Nyní Charm pro základní text */
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background: #E6E6FA; /* Světle levandulové pozadí */
-    color: #333; /* Tmavý text */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Aby se obsah nepřilepil ke spodnímu okraji při malém obsahu */
-    min-height: 100vh; /* Minimální výška zabírá celou obrazovku */
-    overflow-x: hidden; /* Zabrání horizontálnímu scrollování */
-}
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { font-family: 'Charm', cursive; line-height: 1.6; margin: 0; padding: 0; padding-top: 70px; background: #E6E6FA; color: #333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
 
-/* Levandule v pravém horním rohu .container */
-.container::before {
+.top-menu { position: fixed; top: 0; left: 0; width: 100%; background-color: rgba(255, 255, 255, 0.92); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); z-index: 1000; display: flex; justify-content: center; gap: 20px; padding: 15px 0; }
+.top-menu a { font-family: 'Charm', cursive; font-size: 1.2em; font-weight: bold; color: #B57EDC; text-decoration: none; transition: color 0.3s ease; }
+.top-menu a:hover { color: #8a4baf; }
+
+.container { background: #ffffff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); max-width: 800px; width: 90%; text-align: center; margin-top: 20px; margin-bottom: 40px; position: relative; z-index: 1; }
+
+/* DEKORATIVNÍ LEVANDULE */
+.container::before, .container::after {
     content: "";
     position: absolute;
-    top: 0;
-    right: 0;
     width: 180px;
     height: 180px;
     background-image: url('levandule.png');
     background-size: contain;
     background-repeat: no-repeat;
-    opacity: 0.4;
+    opacity: 0.2; 
     z-index: 0;
-    transform: rotate(0deg);
+    pointer-events: none;
 }
+.container::before { top: 0; right: 0; }
+.container::after { bottom: 0; left: 0; transform: rotate(180deg); }
 
-/* Levandule v levém spodním rohu .container */
-.container::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 180px;
-    height: 180px;
-    background-image: url('levandule.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.4;
-    z-index: 0;
-    transform: rotate(270deg) scaleX(-1);
-}
+header h1 { font-family: 'Lovers Quarrel', cursive; color: #B57EDC; font-size: 4.5em; margin: 0 0 25px 0; font-weight: normal; }
+.collage-container { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 20px; }
+.photo-column { display: flex; flex-direction: column; gap: 30px; width: 22%; }
+.photo-card { background: #fff; padding: 6px; border-radius: 6px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); position: relative; z-index: 1; }
+.intro-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; border-radius: 4px; filter: brightness(1.15); }
+.tilt-left-top { transform: rotate(-6deg); } .tilt-left-bottom { transform: rotate(4deg); } .tilt-right-top { transform: rotate(5deg); } .tilt-right-bottom { transform: rotate(-5deg); }
+.intro-text-block { width: 50%; padding: 0 10px; position: relative; z-index: 1; }
+.intro-text { font-size: 1.35em; color: #444; margin-bottom: 20px; }
+.intro-wish { font-size: 1.45em; font-weight: bold; color: #B57EDC; font-style: italic; }
 
-.container {
-    width: 90%;
-    max-width: 800px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
+h2 { font-family: 'Charm', cursive; color: #B57EDC; font-size: 1.8em; margin-bottom: 20px; }
+.detail-item { font-size: 1.1em; margin-bottom: 10px; }
+.detail-item .label { font-weight: bold; color: #B57EDC; }
+.timeline-intro { font-style: italic; color: #555; margin-bottom: 20px; }
 
-/* Hlavička */
-header {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-}
+footer { width: 100%; text-align: center; margin-top: auto; padding: 20px 0; border-top: 1px solid rgba(0, 0, 0, 0.05); font-size: 0.9em; color: #aaa; }
 
-h1 {
-    font-family: 'Lovers Quarrel', cursive; /* Lovers Quarrel pro hlavní nadpis */
-    font-size: 8em;
-    color: #B57EDC;
-    margin-bottom: 1px;
-}
-
-/* Sekce s detaily svatby */
-.wedding-details {
-    margin-bottom: 30px;
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid #eee;
-}
-
-.wedding-details h2 {
-    font-family: 'Charm', cursive; /* Charm pro nadpisy sekcí */
-    color: #B57EDC;
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.detail-item {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.detail-item .label {
-    font-weight: bold;
-    color: #B57EDC;
-}
-
-.detail-item .value {
-    color: #444;
-}
-
-/* Sekce "Stránky se tvoří" */
-.under-construction {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px dashed #ccc;
-    color: #666;
-    font-style: italic;
-}
-
-.under-construction h2 {
-    font-family: 'Charm', cursive; /* Charm pro nadpis "Stránky se tvoří" */
-    color: #B57EDC;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-
-/* Patička */
-footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    font-size: 0.9em;
-    color: #aaa;
-}
-
-/* Responzivní design (pro všechny prvky, včetně levandulí) */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5em;
-    }
-    .wedding-details h2 {
-        font-size: 1.8em;
-    }
-    .container {
-        margin: 20px auto;
-        padding: 20px;
-    }
-    /* Menší obrázky levandulí na menších obrazovkách */
-    .container::before, .container::after {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2em;
-    }
-    .wedding-details h2 {
-        font-size: 1.5em;
-    }
-    .detail-item {
-        font-size: 1em;
-    }
-    /* Ještě menší obrázky levandulí na velmi malých obrazovkách */
-    .container::before, .container::after {
-        width: 60px;
-        height: 60px;
-    }
+    .top-menu { flex-wrap: wrap; gap: 8px 15px; padding: 10px 5px; }
+    .top-menu a { font-size: 0.9em; }
+    header h1 { font-size: 3.5em; }
+    .collage-container { flex-direction: column; gap: 25px; }
+    .photo-column { flex-direction: row; width: 100%; justify-content: center; gap: 15px; }
+    .photo-card { width: 45%; }
+    .intro-text-block { width: 100%; order: -1; }
+    .container { padding: 20px; }
+    .container::before, .container::after { display: none; }
 }
